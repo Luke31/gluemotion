@@ -2,7 +2,7 @@ from mlask import MLAsk
 
 
 class Gluemotion:
-    def __init__(self, text_col) -> None:
+    def __init__(self, text_col):
         """
 
         :param text_col: column-name which contains text to anaylyze
