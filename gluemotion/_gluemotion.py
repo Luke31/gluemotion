@@ -1,4 +1,4 @@
-class Gluemotion:
+class Gluemotion(object):
     def __init__(self, text_col):
         """
 

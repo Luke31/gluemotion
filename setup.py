@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="gluemotion",
-    version="0.0.3-alpha",
+    version="0.0.4-alpha",
     author="Lukas Schmid",
     author_email="lukas.m.schmid@gmail.com",
     description="Glue Emotion",
