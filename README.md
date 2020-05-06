@@ -14,6 +14,6 @@ pip install -i https://test.pypi.org/simple/ gluemotion
 Usage in AWS Glue
 ```python
 from gluemotion import Gluemotion
-gm = Gluemotion(text_col='text')
+gm = Gluemotion('text')
 result_frame = Map.apply(frame = my_frame, f = gm.add_covid_check)
 ```
