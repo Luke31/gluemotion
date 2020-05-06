@@ -1,6 +1,3 @@
-from mlask import MLAsk
-
-
 class Gluemotion:
     def __init__(self, text_col):
         """
@@ -9,25 +6,18 @@ class Gluemotion:
         """
         super().__init__()
         self.text_col = text_col
-        self.emotion_analyzer = MLAsk()
 
-    def add_emotions(self, rec):
+    def add_covid_check(self, rec):
         """
         Analyze Text in AWS Glue DynamicFrame.
 
         Adds following columns to the DynamicFrame:
-        - orientation e.g. positive, mostly positive, negative...
-        - emotion_representative most relevant of e.g. 'yorokobi'
-        - emotion_all list of recognised emotions e.g. ['yorokobi', 'suki']
-        - emoticon list of recognised emoticons e.g. ['(;´Д`)']
+        - covid_mentioned e.g. True if text contains 'covid', else False
 
-        :param rec: DyanmicFrame to expand with emotion
-        :return: new dynamicFrame containing original text and new emotion-col
+        :param rec: DyanmicFrame to expand with covid_mentioned
+        :return: new dynamicFrame containing original text and new covid_mentioned-col
         """
-        result = self.emotion_analyzer.analyze(rec[self.text_col])
+        has_covid = 'covid' in rec[self.text_col].lower()
         rec["text"] = rec[self.text_col]
-        rec["orientation"] = result['orientation']
-        rec["emotion_representative"] = result['representative'][0]
-        rec["emotion_all"] = [emotion for emotion in result['emotion']]
-        rec["emoticons"] = result['emoticon']
+        rec["covid_mentioned"] = has_covid
         return rec

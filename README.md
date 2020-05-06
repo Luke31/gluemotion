@@ -1,10 +1,10 @@
-# gluemotion: Glue Emotion Detection
+# gluemotion: Glue COVID Detection
 
 ![lint-test](https://github.com/Luke31/gluemotion/workflows/lint-test/badge.svg)
 ![package-upload](https://github.com/Luke31/gluemotion/workflows/package-upload/badge.svg)
 
 Example project for showcasing python library distribution.
-Appends emotion columns to a Glue DynamicFrame
+Appends `covid_mentioned` columns to a Glue DynamicFrame
 
 Install using
 ```bash
@@ -15,8 +15,5 @@ Usage in AWS Glue
 ```python
 from gluemotion import Gluemotion
 gm = Gluemotion(text_col='text')
-result_emotions_frame = Map.apply(frame = my_frame, f = gm.add_emotions)
+result_frame = Map.apply(frame = my_frame, f = gm.add_covid_check)
 ```
-
-# Credits
-Using [pymlask](https://github.com/ikegami-yukino/pymlask)
