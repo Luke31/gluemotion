@@ -1,7 +1,7 @@
 # gluemotion: Glue Emotion Detection
 
 ![lint-test](https://github.com/Luke31/gluemotion/workflows/lint-test/badge.svg)
-
+![package-upload](https://github.com/Luke31/gluemotion/workflows/package-upload/badge.svg)
 
 Example project for showcasing python library distribution.
 Appends emotion columns to a Glue DynamicFrame
