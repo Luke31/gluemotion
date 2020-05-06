@@ -12,12 +12,13 @@ class Gluemotion(object):
         Analyze Text in AWS Glue DynamicFrame.
 
         Adds following columns to the DynamicFrame:
-        - covid_mentioned e.g. True if text contains 'covid', else False
+        - covid_mentioned e.g. True if text contains 'covid' or 'コロナ', else False
 
         :param rec: DyanmicFrame to expand with covid_mentioned
         :return: new dynamicFrame containing original text and new covid_mentioned-col
         """
-        has_covid = 'covid' in rec[self.text_col].lower()
+        text = rec[self.text_col].lower()
+        has_covid = 'covid' in text or 'コロナ' in text
         rec["text"] = rec[self.text_col]
         rec["covid_mentioned"] = has_covid
         return rec
