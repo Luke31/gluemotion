@@ -17,16 +17,13 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        pip install -r requirements.txt -r requirements.dev.txt
     - name: Lint with flake8
       run: |
-        pip install flake8
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
-      run: |
-        pip install pytest
-        pytest
+      run: pytest
     - name: Test with pytest
       run: pytest --doctest-modules --junitxml=junit/test-results-${{ matrix.python-version }}.xml
     - name: Upload pytest test results
@@ -48,10 +45,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
-    - name: Test with pytest
-      run: |
-        pip install -r requirements.dev.txt
+        pip install -r requirements.txt -r requirements.dev.txt
     - uses: paambaati/codeclimate-action@v2.2.4
       env:
         CC_TEST_REPORTER_ID: 11feb778907300cd48fe1656cf22a9d5253902b4a76ced94b21a07b93e2c8443
