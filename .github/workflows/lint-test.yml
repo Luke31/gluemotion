@@ -52,4 +52,3 @@ jobs:
         CC_TEST_REPORTER_ID: 11feb778907300cd48fe1656cf22a9d5253902b4a76ced94b21a07b93e2c8443
       with:
         coverageCommand: pytest
-        coverageLocations: ${{github.workspace}}/.coverage:coverage.py
