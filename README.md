@@ -2,6 +2,8 @@
 
 ![lint-test](https://github.com/Luke31/gluemotion/workflows/lint-test/badge.svg)
 ![package-upload](https://github.com/Luke31/gluemotion/workflows/package-upload/badge.svg)
+[![Maintainability](https://api.codeclimate.com/v1/badges/7af5042424d365aa5c6b/maintainability)](https://codeclimate.com/github/Luke31/gluemotion/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/7af5042424d365aa5c6b/test_coverage)](https://codeclimate.com/github/Luke31/gluemotion/test_coverage)
 
 Example project for showcasing python library distribution.
 Appends `covid_mentioned` columns to a Glue DynamicFrame
