@@ -22,7 +22,9 @@ jobs:
         cd java-artifact
         mvn clean install
     - name: Coverage
-      run: mvn sonar:sonar \
+      run: |
+        cd java-artifact
+        mvn sonar:sonar \
         -Dsonar.projectKey=Luke31_gluemotion \
         -Dsonar.organization=luke31 \
         -Dsonar.host.url=https://sonarcloud.io \
