@@ -57,45 +57,45 @@ jobs:
     - name:
       run: pytest
     - name: Upload built function.zip result for deployment
-        uses: actions/upload-artifact@v1
-        with:
-          name: coverage
-          path: coverage.xml
+      uses: actions/upload-artifact@v1
+      with:
+        name: coverage
+        path: coverage.xml
   coverage-java:
     needs: [ coverage-python ]
     name: coverage-java
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Download function.zip from previous build job
-        uses: actions/download-artifact@v1
-        with:
-          name: coverage
-          path: .
-      - name: Set up JDK 11
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
-      - name: Cache Maven packages
-        uses: actions/cache@v1
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
-      - name: Build and test
-        run: |
-          cd java-artifact
-          mvn clean install
-      - name: Coverage
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          cd java-artifact
-          mvn sonar:sonar \
-          -Dsonar.projectKey=Luke31_gluemotion \
-          -Dsonar.organization=luke31 \
-          -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-          -Dsonar.python.coverage.reportPaths=./coverage.xml
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Download function.zip from previous build job
+      uses: actions/download-artifact@v1
+      with:
+        name: coverage
+        path: .
+    - name: Set up JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Cache Maven packages
+      uses: actions/cache@v1
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2
+    - name: Build and test
+      run: |
+        cd java-artifact
+        mvn clean install
+    - name: Coverage
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        cd java-artifact
+        mvn sonar:sonar \
+        -Dsonar.projectKey=Luke31_gluemotion \
+        -Dsonar.organization=luke31 \
+        -Dsonar.host.url=https://sonarcloud.io \
+        -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+        -Dsonar.python.coverage.reportPaths=./coverage.xml
