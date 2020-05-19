@@ -1,6 +1,6 @@
 [run]
 branch = True
-omit = tests/*
+omit = tests/*, setup.py
 
 [report]
 fail_under=80
