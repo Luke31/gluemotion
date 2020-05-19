@@ -1,4 +1,4 @@
-name: lint-test
+name: java-test
 
 on: [push]
 
@@ -8,7 +8,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build and test
-      run: mvn clean install
+      run: |
+        cd java-artifact
+        mvn clean install
     - name: Coverage
       run: mvn sonar:sonar \
         -Dsonar.projectKey=Luke31_gluemotion \
