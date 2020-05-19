@@ -22,6 +22,8 @@ jobs:
         cd java-artifact
         mvn clean install
     - name: Coverage
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         cd java-artifact
         mvn sonar:sonar \
