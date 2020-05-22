@@ -94,7 +94,9 @@ jobs:
         JACOCO_SOURCE_PATH: "${{github.workspace}}/java-artifact/src/main/java"
       with:
         coverageCommand: mvn clean install
-        coverageLocations: ${{github.workspace}}/java-artifact/target/site/jacoco/jacoco.xml:jacoco,${{github.workspace}}/coverage.xml:coverage.py
+        coverageLocations: |
+          ${{github.workspace}}/java-artifact/target/site/jacoco/jacoco.xml:jacoco
+          ${{github.workspace}}/coverage.xml:coverage.py
     - name: Coverage
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -105,4 +107,4 @@ jobs:
         -Dsonar.host.url=https://sonarcloud.io \
         -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
         -Dsonar.python.coverage.reportPaths=./coverage.xml \
-        -Dsonar.sources=src/main,pom.xml,../gluemotion
+        -Dsonar.sources=src/main
