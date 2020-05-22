@@ -48,12 +48,12 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt -r requirements.dev.txt
-    - name: Test & publish code coverage
-      uses: paambaati/codeclimate-action@v2.6.0
-      env:
-        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-      with:
-        coverageCommand: pytest
+#    - name: Test & publish code coverage
+#      uses: paambaati/codeclimate-action@v2.6.0
+#      env:
+#        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+#      with:
+#        coverageCommand: pytest
     - name:
       run: pytest
     - name: Upload built function.zip result for deployment
@@ -94,7 +94,7 @@ jobs:
         JACOCO_SOURCE_PATH: "${{github.workspace}}/java-artifact/src/main/java"
       with:
         coverageCommand: mvn clean install
-        coverageLocations: ${{github.workspace}}/java-artifact/target/site/jacoco/jacoco.xml:jacoco
+        coverageLocations: ${{github.workspace}}/java-artifact/target/site/jacoco/jacoco.xml:jacoco,${{github.workspace}}/coverage.xml:coverage.py
     - name: Coverage
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -105,5 +105,4 @@ jobs:
         -Dsonar.host.url=https://sonarcloud.io \
         -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
         -Dsonar.python.coverage.reportPaths=./coverage.xml \
-        -Dsonar.sources=. \
-        -Dsonar.test.exclusions=pom.xml,"file:**/test/**"
+        -Dsonar.sources=src/main,pom.xml,../gluemotion

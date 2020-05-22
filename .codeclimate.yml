@@ -5,6 +5,7 @@ engines:
     config:
       languages:
       - python
+      - java
   fixme:
     enabled: true
   markdownlint:
