@@ -87,7 +87,12 @@ jobs:
     - name: Build and test
       run: |
         cd java-artifact
-        mvn clean install
+    - name: Test & publish code coverage
+      uses: paambaati/codeclimate-action@v2.6.0
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+      with:
+        coverageCommand: mvn clean install
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
       env:
