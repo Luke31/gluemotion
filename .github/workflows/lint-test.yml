@@ -88,15 +88,20 @@ jobs:
       run: |
         cd java-artifact
         mvn clean install
-    - name: Coverage
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        cd java-artifact
-        mvn sonar:sonar \
-        -Dsonar.projectKey=Luke31_gluemotion \
-        -Dsonar.organization=luke31 \
-        -Dsonar.host.url=https://sonarcloud.io \
-        -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-        -Dsonar.python.coverage.reportPaths=./coverage.xml \
-        -Dsonar.sources=src/main,pom.xml,gluemotion
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+#    - name: Coverage
+#      env:
+#        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#      run: |
+#        mvn sonar:sonar \
+#        -Dsonar.projectKey=Luke31_gluemotion \
+#        -Dsonar.organization=luke31 \
+#        -Dsonar.host.url=https://sonarcloud.io \
+#        -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+#        -Dsonar.python.coverage.reportPaths=./coverage.xml \
+#        -Dsonar.projectBaseDir=
+#        -Dsonar.sources=src/main,pom.xml,gluemotion
