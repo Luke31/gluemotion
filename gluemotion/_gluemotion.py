@@ -21,4 +21,5 @@ class Gluemotion(object):
         has_covid = 'covid' in text or 'コロナ' in text
         rec["text"] = rec[self.text_col]
         rec["covid_mentioned"] = has_covid
+        print("am I covered?")
         return rec
